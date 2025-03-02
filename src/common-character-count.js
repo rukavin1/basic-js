@@ -13,17 +13,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function getCommonCharacterCount(s1, s2) {
   let count = 0;
-  let str = s1.concat(s2);
-  let arr = str.split('');
+  let s2Arr = s2.split('');
 
-  let sorted = arr.sort((a, b) => a.localeCompare(b));
+  for (let i = 0; i < s1.length; i++) {
+    const letter = s1[i];
+    const index = s2Arr.indexOf(letter);
 
-  for (let i = 0; i < sorted.length; i++) {
-    if (sorted[i] === sorted[i + 1]) {
-      count++
-      sorted.splice(i, i + 1);
+    if (index !== -1) {
+      count++;
+      s2Arr.splice(index, 1);
     }
   }
+
   return count;
 }
 
